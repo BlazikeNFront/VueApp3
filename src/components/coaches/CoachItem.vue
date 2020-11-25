@@ -7,8 +7,8 @@
         <base-badge v-for='area in areas' :key='area' :title='area' :type='area'></base-badge>
     </div>
     <div class='actions'>
-        <base-button mode='outline' link to='/coaches/c1/contact'>Contact </base-button>
-        <base-button link to='/coaches/c1'> View Details</base-button>
+        <base-button mode='outline' link :to='coachContactList'>Contact </base-button>
+        <base-button link :to='coachDetails'> View Details</base-button>
     </div>
     </li>
 </template>
@@ -16,6 +16,7 @@
 <script>
 export default {
     props:['id','firstName','lastName','rate','areas'],
+   
     computed:{
         fullName(){
             return this.firstName + ' '+ this.lastName

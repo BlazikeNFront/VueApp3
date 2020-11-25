@@ -9,6 +9,7 @@ export default {
             description:data.desc,
             hourlyRate:data.rate,
         }
+        
         context.commit('registerCoach',coachData)
     }
 }
