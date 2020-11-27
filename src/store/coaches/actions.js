@@ -32,8 +32,10 @@ export default {
         })
     },
 
-    async loadCoaches(context){
-       
+    async loadCoaches(context,payload){
+       if(!payload.forceRefresh && !context.getters.shouldUpadte){
+           return
+       }
       const response = await (await fetch(`https://vue-manage.firebaseio.com/coaches.json`)).json();
       
       if(!response.ok){
@@ -57,7 +59,8 @@ export default {
           coaches.push(coach);
       }
       
-      context.commit('loadCoach',coaches)
+      context.commit('loadCoach',coaches);
+      context.commit('setFetchTimestamp');
       
     }
 }
