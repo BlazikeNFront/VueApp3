@@ -1,4 +1,5 @@
 <template>
+<div>
 <base-dialog :show="!!error" title='There was an error !' @close='closeDialog'>
 <p>{{ error }}</p>
 </base-dialog>
@@ -7,7 +8,7 @@
   </section>
   <section>
     <div class="controls">
-      <base-button @click='loadCoaches'>Refresh</base-button>
+      <base-button @click='loadCoaches(true)'>Refresh</base-button>
       <base-button v-if='!isCoach && !isLoading' link to="/register">Register as Coach</base-button>
     </div>
     <div v-if='isLoading'>
@@ -18,6 +19,7 @@
     </ul>
     <h3 v-else>No coaches found</h3>
   </section>
+  </div>
 </template>
 
 <script>
@@ -76,10 +78,10 @@ export default {
     setFilter(updatedFilter){
       this.activeFilter = updatedFilter;
     } ,
-    async loadCoaches(){
+    async loadCoaches(refresh = false){
       this.isLoading = true;
      try { 
-       await this.$store.dispatch('coaches/loadCoaches') 
+       await this.$store.dispatch('coaches/loadCoaches',{forceRefresh:refresh}) 
      }catch(error){
       
        this.error = error || 'An error occured, try again later...'
