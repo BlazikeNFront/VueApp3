@@ -13,7 +13,23 @@ import TheHeader from './components/layout/TheHeader.vue';
 export default {
   components: {
     TheHeader
-  }  
+  }  ,
+  created(){
+    this.$store.dispatch('tryLogin')
+  },
+
+  computed:{
+    didAutologut(){
+      return this.$store.getters.didAutoLoggout
+    }
+  },
+  watch:{
+    didAutologut(newVal,oldVal){
+      if(newVal && newVal !== oldVal){
+        this.$router.replace('/coaches')
+      }
+    }
+  }
 }
 </script>
 

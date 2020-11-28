@@ -79,10 +79,13 @@ export default {
               await this.$store.dispatch('login',actionPayload)
 
             }else {
-                console.log('signUp')
+                
                await this.$store.dispatch('signUp',actionPayload)
 
-            }} catch(err) {
+            }
+                const redirect = '/' +  (this.$route.query.redirect || 'coaches')
+                this.$router.replace(redirect)
+            } catch(err) {
 
                 this.error= err.message || 'Failed to authenticate'
 

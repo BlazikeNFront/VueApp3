@@ -12,7 +12,8 @@ export default {
             hourlyRate:data.rate,
         }
 
-       const response = await fetch(`https://vue-manage.firebaseio.com/coaches/${coachID}.json`,
+        const token = context.rootGetters.token
+       const response = await fetch(`https://vue-manage.firebaseio.com/coaches/${coachID}.json?auth=${token}`,
        {
            method:'PUT',
            body:JSON.stringify(coachData),

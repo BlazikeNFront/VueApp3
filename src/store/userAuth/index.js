@@ -1,6 +1,6 @@
 import actions from './actions.js';
-import mutations from './getters.js';
-import getters from './mutations.js';
+import getters from './getters.js';
+import mutations from './mutations.js';
 
 
 
@@ -10,7 +10,7 @@ export default {
         return {
            userId:null,
            token:null,
-           tokenExpiration:null,
+           didLogout:false,
         }
      },
   actions,

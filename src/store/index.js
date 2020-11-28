@@ -10,6 +10,7 @@ const store = createStore({
     coaches:CoachesModule,
     requests:RequestsModule,
     userAuth:UserAuthModule,
+    
    },
    
 

@@ -26,7 +26,10 @@ export default {
 
   async loadRequests(context){
     const coachId = context.rootGetters.userId
-    const response = await fetch(`https://vue-manage.firebaseio.com/requests/${coachId}.json`);
+
+    const token = context.rootGetters.token
+
+    const response = await fetch(`https://vue-manage.firebaseio.com/requests/${coachId}.json?auth=${token}`);
     if(!response.ok){
       const error = new Error(responseData.message || 'There was an error')
       throw error

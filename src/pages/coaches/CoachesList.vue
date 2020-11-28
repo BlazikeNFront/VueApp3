@@ -9,7 +9,8 @@
   <section>
     <div class="controls">
       <base-button @click='loadCoaches(true)'>Refresh</base-button>
-      <base-button v-if='!isCoach && !isLoading' link to="/register">Register as Coach</base-button>
+      <base-button v-if='!isCoach && !isLoading && isAuth' link to="/register" >Register as Coach</base-button>
+      <base-button v-if='!isCoach && !isLoading && !isAuth' link to="/auth?redirect=register">Login</base-button>
     </div>
     <div v-if='isLoading'>
       <base-spinner ></base-spinner>
@@ -45,6 +46,9 @@ export default {
     
   }},
     computed:{
+      isAuth(){
+        return !!this.$store.getters.isAuth
+      },
 
       isCoach(){
         return this.$store.getters['coaches/isCoach']
